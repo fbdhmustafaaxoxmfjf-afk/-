@@ -2,7 +2,7 @@ import telebot
 import trakos
 from time import sleep 
 import requests
-i = input(" [~] Enter Token ::")
+i = input(" [~] Enter Token :8760643164:AAE0-rCVGAfSiWEPAycwBX8uhsPKwMeYri8:")
 bot = telebot.TeleBot(i)
 
 @bot.message_handler(commands=['start'])

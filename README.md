@@ -1,0 +1,39 @@
+import telebot
+import trakos
+from time import sleep 
+import requests
+i = input(" [~] Enter Token :8760643164:AAE0-rCVGAfSiWEPAycwBX8uhsPKwMeYri8:")
+bot = telebot.TeleBot(i)
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    bot.send_message(message.chat.id,f""" 
+<strong>
+Hi, 
+- - - - - - - - - - 
+Welcome To Spam Bot ❤️‍🔥 
+Now Send Your Message Like : 
+message:subject:email
+- - - - - - - - - - 
+By : @trprogram 
+</strong>
+    """,parse_mode="html")
+@bot.message_handler(func=lambda m:True )
+def sta(message):
+    while True:
+        sleep(2)
+        k = 0
+        msg = message.text
+        me = message.text.split(':')[0]
+        sub = message.text.split(':')[1]
+        email = message.text.split(':')[2]
+        url = requests.get(f"https://dev-khafer.pantheonsite.io/sendmail.php?send=true&mail={email}&subject={sub}&message={me}").json()
+        a = url['result']
+        if "Done Send Message" in a:
+            k +=1
+            bot.send_message(message.chat.id,f"<strong>Done Send Message:\nDone : {k}\nError : Null \n By : @trprogram </strong>",parse_mode="html")
+    else:
+        bot.send_message(message.chat.id,"Request Time Out. ")
+   
+  
+bot.polling()
